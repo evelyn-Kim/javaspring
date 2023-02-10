@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="gr" class="di_01.Greeting">
+		<property name="log" ref="dbmslog" />
+		<property name="name" value="김길동" />
+	</bean>
+	
+	<bean id="mylog" class="di_01.MyLog" lazy-init="true">
+	</bean>
+	
+	<bean id="mylogfile" class="di_01.MyLogFile">
+		<property name="filename" value="mylog.log" />
+	</bean>
+
+	<!-- DBMS사용시 DBip, 유저명,암호 설정 -->
+	<bean id="dbmslog" class="di_01.DBMSLog">
+		<constructor-arg value="127.0.0.1"></constructor-arg>
+		<constructor-arg value="user1"></constructor-arg>
+		<constructor-arg value="pass1"></constructor-arg>
+	</bean>
+
+	<bean id="id" class="di_01.MyCalc" scope="prototype">
+	</bean>
+
+</beans>
+
+
